@@ -19,18 +19,18 @@ public class Client {
     @Id
     @Column(name = "client_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
 
     @Column(name = "client_name", length = 50, nullable = false)
-    String name;
+    private String name;
 
     @Column(name = "client_email", length = 50, nullable = false, unique = true)
-    String email;
+    private String email;
 
     @Column(name = "password_hash", length = 255, nullable = false)
-    String passwordHash;
+    private String passwordHash;
 
     @JoinColumn(name = "trainer_id", nullable = false)
     @ManyToOne
-    Trainer trainer;
+    private Trainer trainer;
 }

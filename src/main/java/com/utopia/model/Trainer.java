@@ -17,14 +17,14 @@ public class Trainer {
     @Id
     @Column(name = "trainer_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
 
     @Column(name = "trainer_name", length = 50, nullable = false)
-    String name;
+    private String name;
 
     @Column(name = "trainer_email", length = 50, nullable = false, unique = true)
-    String email;
+    private String email;
 
     @Column(name = "password_hash", length = 255, nullable = false)
-    String passwordHash;
+    private String passwordHash;
 }
