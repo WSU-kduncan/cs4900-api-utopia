@@ -1,4 +1,4 @@
-package model; 
+package org.utopia.fitnessdb.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,18 +10,21 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Routine")
-public class Routine {
+@Table(name = "trainer")
+public class Trainer {
 
     @Id
-    @Column(name = "routine_id", nullable = false)
+    @Column(name = "trainer_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer routineId;
+    Integer id;
 
     @Column(name = "name", length = 50, nullable = false)
-    String routineName; 
+    String name; 
 
-    @Column(name = "description", nullable = true)
-    String description; 
+    @Column(name = "email", length = 50, nullable = false)
+    String emailAddress; 
+
+    @Column(name = "password_hash", length = 255, nullable = false)
+    String passwordHash; 
 
 }
