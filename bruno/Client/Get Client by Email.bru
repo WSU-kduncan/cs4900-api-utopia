@@ -1,0 +1,20 @@
+meta {
+  name: Get Client by Email
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{BASE_URL}}/client/email/curtis@awesome.com
+  body: none
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
