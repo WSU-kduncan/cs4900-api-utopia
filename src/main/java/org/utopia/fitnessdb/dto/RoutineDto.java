@@ -8,7 +8,7 @@ import lombok.Value;
 @Builder
 @Data
 @Value
-public class Routinedto {
+public class RoutineDto {
 
   Integer routineId;
 
