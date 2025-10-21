@@ -1,4 +1,5 @@
 package org.utopia.fitnessdb.config;
+
 import java.sql.SQLException;
 import lombok.extern.log4j.Log4j2;
 import org.h2.tools.Server;
