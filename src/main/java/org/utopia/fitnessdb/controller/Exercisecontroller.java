@@ -1,4 +1,3 @@
-
 package org.utopia.fitnessdb.controller;
 
 import lombok.RequiredArgsConstructor;
@@ -30,24 +29,24 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(
-    path = "routine",
+    path = "exercise",
     produces = MediaType.APPLICATION_JSON_VALUE,
     consumes = MediaType.APPLICATION_JSON_VALUE)
-public class Routinecontroller {
+public class Exercisecontroller {
 
-  private final Routinedtomapper routinedtomapper;
+  private final Exercisedtomapper exercisedtomapper;
 
-  private final Routineservice routineservice;
+  private final Exerciseservice exerciseservice;
 
   @GetMapping
-  ResponseEntity<List<Routinedto>> getAllRoutine() {
+  ResponseEntity<List<Exercisedto>> getAllExercise() {
     return new ResponseEntity<>(
-        routinedtoMapper.toDtoList(routineservice.getAllRoutine()), HttpStatus.OK);
+        ExercisedtoMapper.toDtoList(exerciseservice.getAllExercise()), HttpStatus.OK);
   }
 
   @GetMapping(path = "{id}")
-  ResponseEntity<Routinedto> getRoutineById(@PathVariable Integer id) {
+  ResponseEntity<Exercisedto> getExerciseById(@PathVariable Integer id) {
     return new ResponseEntity<>(
-        Routinedtomapper.toDto(routineservice.getRoutineById(id)), HttpStatus.OK);
+        Exercisedtomapper.toDto(exerciseservice.getExerciseById(id)), HttpStatus.OK);
   }
 }
