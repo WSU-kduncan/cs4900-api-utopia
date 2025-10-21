@@ -20,7 +20,7 @@ public class SessionController {
     private final SessionService sessionService;
     private final SessionMapper sessionMapper;
 
-    // 1️⃣ Find all sessions
+    // Find all sessions
     @GetMapping
     public ResponseEntity<List<SessionDto>> getAllSessions() {
         List<Session> sessions = sessionService.getAllSessions();
@@ -30,7 +30,7 @@ public class SessionController {
         return ResponseEntity.ok(dtos);
     }
 
-    // 2️⃣ Find session by ID
+    // Find session by ID
     @GetMapping("/{id}")
     public ResponseEntity<SessionDto> getSessionById(@PathVariable Integer id) {
         Optional<Session> sessionOpt = sessionService.getSessionById(id);
@@ -39,7 +39,7 @@ public class SessionController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    // 3️⃣ Search sessions by note
+    // Search sessions by note
     @GetMapping("/search")
     public ResponseEntity<List<SessionDto>> searchSessions(@RequestParam String note) {
         List<Session> sessions = sessionService.searchSessionsByNote(note);
