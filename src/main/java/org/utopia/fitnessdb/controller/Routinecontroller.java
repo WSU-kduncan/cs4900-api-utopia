@@ -10,20 +10,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.utopia.fitnessdb.controller.Routinecontroller;
-import org.utopia.fitnessdb.controller.Exercisecontroller;
+import org.utopia.fitnessdb.controller.RoutineController;
+import org.utopia.fitnessdb.controller.ExerciseController;
 
-import org.utopia.fitnessdb.dto.Routinedto;
-import org.utopia.fitnessdb.dto.Exercisedto;
+import org.utopia.fitnessdb.dto.RoutineDto;
+import org.utopia.fitnessdb.dto.ExerciseDto;
 
-import org.utopia.fitnessdb.mapper.Routinedtomapper;
-import org.utopia.fitnessdb.mapper.Exercisedtomapper;
+import org.utopia.fitnessdb.mapper.RoutineDtoMapper;
+import org.utopia.fitnessdb.mapper.ExerciseDtoMapper;
 
-import org.utopia.fitnessdb.repository.Routinerepository;
-import org.utopia.fitnessdb.repository.Exerciserepository;
+import org.utopia.fitnessdb.repository.RoutineRepository;
+import org.utopia.fitnessdb.repository.ExerciseRepository;
 
-import org.utopia.fitnessdb.service.Exerciseservice;
-import org.utopia.fitnessdb.service.Routineservice;
+import org.utopia.fitnessdb.service.ExerciseService;
+import org.utopia.fitnessdb.service.RoutineService;
+
+import org.utopia.fitnessdb.model.Exercise;
+import org.utopia.fitnessdb.model.Routine;
 
 import java.util.List;
 
