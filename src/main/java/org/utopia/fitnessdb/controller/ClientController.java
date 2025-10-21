@@ -1,6 +1,7 @@
 package org.utopia.fitnessdb.controller;
 
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +20,7 @@ import java.util.List;
 @RequestMapping(
         path = "client",
         produces = MediaType.APPLICATION_JSON_VALUE,
-        consumes = MediaType.APPLICATION_JSON_VALUE
-)
+        consumes = MediaType.APPLICATION_JSON_VALUE)
 public class ClientController {
     private final ClientDtoMapper m_mapper;
     private final ClientService m_service;
@@ -37,6 +37,7 @@ public class ClientController {
 
     @GetMapping(path = "email/{email}")
     ResponseEntity<ClientDto> getClientByEmail(@PathVariable String email) {
-        return new ResponseEntity<>(m_mapper.toDto(m_service.getClientByEmail(email)), HttpStatus.OK);
+        return new ResponseEntity<>(
+                m_mapper.toDto(m_service.getClientByEmail(email)), HttpStatus.OK);
     }
 }

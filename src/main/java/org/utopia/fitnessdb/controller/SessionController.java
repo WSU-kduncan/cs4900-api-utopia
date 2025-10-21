@@ -1,6 +1,7 @@
 package org.utopia.fitnessdb.controller;
 
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +20,7 @@ import java.util.List;
 @RequestMapping(
         path = "session",
         produces = MediaType.APPLICATION_JSON_VALUE,
-        consumes = MediaType.APPLICATION_JSON_VALUE
-)
+        consumes = MediaType.APPLICATION_JSON_VALUE)
 public class SessionController {
     private final SessionDtoMapper m_mapper;
     private final SessionService m_service;
@@ -37,11 +37,13 @@ public class SessionController {
 
     @GetMapping(path = "trainer/{trainer}")
     ResponseEntity<SessionDto> getSessionByTrainer(@PathVariable Integer trainer) {
-        return new ResponseEntity<>(m_mapper.toDto(m_service.getSessionByTrainer(trainer)), HttpStatus.OK);
+        return new ResponseEntity<>(
+                m_mapper.toDto(m_service.getSessionByTrainer(trainer)), HttpStatus.OK);
     }
 
     @GetMapping(path = "client/{client}")
     ResponseEntity<SessionDto> getSessionByClient(@PathVariable Integer client) {
-        return new ResponseEntity<>(m_mapper.toDto(m_service.getSessionByTrainer(client)), HttpStatus.OK);
+        return new ResponseEntity<>(
+                m_mapper.toDto(m_service.getSessionByTrainer(client)), HttpStatus.OK);
     }
 }

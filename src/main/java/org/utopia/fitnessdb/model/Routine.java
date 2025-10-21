@@ -1,8 +1,19 @@
 package org.utopia.fitnessdb.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+
 import lombok.Getter;
 import lombok.Setter;
-import jakarta.persistence.*;
+
 import java.util.List;
 
 @Entity
@@ -25,8 +36,6 @@ public class Routine {
     @JoinTable(
             name = "Routine_Exercise",
             joinColumns = @JoinColumn(name = "routine_id"),
-            inverseJoinColumns = @JoinColumn(name = "exercise_id")
-    )
+            inverseJoinColumns = @JoinColumn(name = "exercise_id"))
     private List<Exercise> exercises;
-
 }

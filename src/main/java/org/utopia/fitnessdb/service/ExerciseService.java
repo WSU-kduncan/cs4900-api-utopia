@@ -1,7 +1,9 @@
 package org.utopia.fitnessdb.service;
 
 import jakarta.persistence.EntityNotFoundException;
+
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 import org.utopia.fitnessdb.model.Exercise;
 import org.utopia.fitnessdb.repository.ExerciseRepository;
@@ -32,6 +34,5 @@ public class ExerciseService {
             throw new EntityNotFoundException("Exercise with name " + name + " not found");
         }
         return exercise.get();
-
     }
 }

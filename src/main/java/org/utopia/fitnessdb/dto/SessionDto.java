@@ -3,12 +3,9 @@ package org.utopia.fitnessdb.dto;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Value;
-import org.utopia.fitnessdb.model.Routine;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.time.Instant;
-import java.util.List;
 
 @Builder
 @Data

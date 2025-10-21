@@ -1,7 +1,9 @@
 package org.utopia.fitnessdb.service;
 
 import jakarta.persistence.EntityNotFoundException;
+
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 import org.utopia.fitnessdb.model.Routine;
 import org.utopia.fitnessdb.repository.RoutineRepository;
@@ -32,6 +34,5 @@ public class RoutineService {
             throw new EntityNotFoundException("Routine with email " + name + " not found");
         }
         return Routine.get();
-
     }
 }
