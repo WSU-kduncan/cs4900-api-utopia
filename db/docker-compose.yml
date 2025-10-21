@@ -1,0 +1,15 @@
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: WSU_4900_DB_Design
+    restart: always
+    volumes:
+      - ./utopia.sql:/docker-entrypoint-initdb.d/init.sql
+      # - ./data:/var/lib/mysql                   # Mount a volume for data persistence (optional)
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=FitnessDB
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    ports:
+      - 8080:3306

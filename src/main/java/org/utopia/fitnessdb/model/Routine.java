@@ -1,4 +1,4 @@
-package com.utopia.model;
+package org.utopia.fitnessdb.model;
 
 import java.util.List;
 

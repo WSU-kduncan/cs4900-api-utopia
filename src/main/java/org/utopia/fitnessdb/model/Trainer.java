@@ -1,36 +1,30 @@
-package com.utopia.model;
+package org.utopia.fitnessdb.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 
 @Data
 @Entity
-@Table(name = "Client")
-public class Client {
+@Table(name = "Trainer")
+public class Trainer {
 
     @Id
-    @Column(name = "client_id", nullable = false)
+    @Column(name = "trainer_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "client_name", length = 50, nullable = false)
+    @Column(name = "trainer_name", length = 50, nullable = false)
     private String name;
 
-    @Column(name = "client_email", length = 50, nullable = false, unique = true)
+    @Column(name = "trainer_email", length = 50, nullable = false, unique = true)
     private String email;
 
     @Column(name = "password_hash", length = 255, nullable = false)
     private String passwordHash;
-
-    @JoinColumn(name = "trainer_id", nullable = false)
-    @ManyToOne
-    private Trainer trainer;
 }
