@@ -9,7 +9,7 @@ import lombok.Value;
 @Builder
 @Data
 @Value
-public class Exercisedto {
+public class ExerciseDto {
 
   Integer exerciseId;
 
