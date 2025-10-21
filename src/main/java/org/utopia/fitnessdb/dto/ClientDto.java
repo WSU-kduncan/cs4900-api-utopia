@@ -8,9 +8,9 @@ import lombok.Value;
 @Data
 @Value
 public class ClientDto {
-    Integer clientId;
-    String clientName;
-    String clientEmail;
+    Integer id;
+    String name;
+    String email;
     String passwordHash;
     TrainerDto trainer;
 }

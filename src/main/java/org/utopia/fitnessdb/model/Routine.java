@@ -10,15 +10,23 @@ import java.util.List;
 @Getter
 @Setter
 public class Routine {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "routine_id", nullable = false)
-    private Integer routineId;
+    private Integer id;
 
     @Column(name = "routine_name", nullable = false, unique = true, length = 50)
-    private String routineName;
+    private String name;
 
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "Routine_Exercise",
+            joinColumns = @JoinColumn(name = "routine_id"),
+            inverseJoinColumns = @JoinColumn(name = "exercise_id")
+    )
+    private List<Exercise> exercises;
+
 }

@@ -27,7 +27,7 @@ public class ClientService {
     }
 
     public Client getClientByEmail(String email) throws EntityNotFoundException {
-        Optional<Client> client = m_repository.findByClientEmail(email);
+        Optional<Client> client = m_repository.findByEmail(email);
         if (client.isEmpty()) {
             throw new EntityNotFoundException("Client with email " + email + " not found");
         }

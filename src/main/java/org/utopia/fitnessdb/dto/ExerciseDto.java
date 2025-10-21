@@ -1,16 +1,19 @@
 package org.utopia.fitnessdb.dto;
 
-import jakarta.persistence.Column;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Value;
 
+import java.sql.Time;
+import java.time.Instant;
+
 @Builder
 @Data
 @Value
-public class TrainerDto {
+public class ExerciseDto {
     Integer id;
     String name;
-    String email;
-    String passwordHash;
+    String note;
+    Time duration;
+    Integer reps;
 }

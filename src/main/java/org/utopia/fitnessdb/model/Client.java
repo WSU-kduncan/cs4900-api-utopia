@@ -13,13 +13,13 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "client_id", nullable = false)
-    private Integer clientId;
+    private Integer id;
 
     @Column(name = "client_name", nullable = false, length = 50)
-    private String clientName;
+    private String name;
 
     @Column(name = "client_email", nullable = false, unique = true, length = 50)
-    private String clientEmail;
+    private String email;
 
     @Column(name = "password_hash", nullable = false, length = 255)
     private String passwordHash;
