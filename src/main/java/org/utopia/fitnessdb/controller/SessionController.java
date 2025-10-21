@@ -1,49 +1,51 @@
 package org.utopia.fitnessdb.controller;
 
 import lombok.RequiredArgsConstructor;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.utopia.fitnessdb.dto.SessionDto;
-import org.utopia.fitnessdb.mapper.SessionDtoMapper;
+import org.utopia.fitnessdb.mapper.SessionMapper;
+import org.utopia.fitnessdb.model.Session;
 import org.utopia.fitnessdb.service.SessionService;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
-@RequiredArgsConstructor
 @RestController
-@RequestMapping(
-        path = "session",
-        produces = MediaType.APPLICATION_JSON_VALUE,
-        consumes = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping("/sessions")
+@RequiredArgsConstructor
 public class SessionController {
-    private final SessionDtoMapper mapper;
-    private final SessionService service;
 
+    private final SessionService sessionService;
+    private final SessionMapper sessionMapper;
+
+    // 1️⃣ Find all sessions
     @GetMapping
-    ResponseEntity<List<SessionDto>> getAllSessions() {
-        return new ResponseEntity<>(mapper.toDtoList(service.getAllSessions()), HttpStatus.OK);
+    public ResponseEntity<List<SessionDto>> getAllSessions() {
+        List<Session> sessions = sessionService.getAllSessions();
+        List<SessionDto> dtos = sessions.stream()
+                .map(sessionMapper::toDto)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(dtos);
     }
 
-    @GetMapping(path = "{id}")
-    ResponseEntity<SessionDto> getSessionById(@PathVariable Integer id) {
-        return new ResponseEntity<>(mapper.toDto(service.getSessionById(id)), HttpStatus.OK);
+    // 2️⃣ Find session by ID
+    @GetMapping("/{id}")
+    public ResponseEntity<SessionDto> getSessionById(@PathVariable Integer id) {
+        Optional<Session> sessionOpt = sessionService.getSessionById(id);
+        return sessionOpt
+                .map(session -> ResponseEntity.ok(sessionMapper.toDto(session)))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @GetMapping(path = "trainer/{trainer}")
-    ResponseEntity<SessionDto> getSessionByTrainer(@PathVariable Integer trainer) {
-        return new ResponseEntity<>(
-                mapper.toDto(service.getSessionByTrainer(trainer)), HttpStatus.OK);
-    }
-
-    @GetMapping(path = "client/{client}")
-    ResponseEntity<SessionDto> getSessionByClient(@PathVariable Integer client) {
-        return new ResponseEntity<>(
-                mapper.toDto(service.getSessionByClient(client)), HttpStatus.OK);
+    // 3️⃣ Search sessions by note
+    @GetMapping("/search")
+    public ResponseEntity<List<SessionDto>> searchSessions(@RequestParam String note) {
+        List<Session> sessions = sessionService.searchSessionsByNote(note);
+        List<SessionDto> dtos = sessions.stream()
+                .map(sessionMapper::toDto)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(dtos);
     }
 }
