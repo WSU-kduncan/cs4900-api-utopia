@@ -6,8 +6,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
+import java.time.Duration;
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.ManyToAny;
 
 @Data
 @Entity
@@ -17,24 +22,27 @@ public class Session {
     @Id
     @Column(name = "session_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer exerciseId;
+    private Integer id;
 
-    @JoinColumn(name = "client)id", nullable = false)
-    String clientId; 
+    @ManyToOne
+    @JoinColumn(name = "client_ls id", nullable = false)
+    private Client client; 
 
+    @ManyToOne
     @JoinColumn(name = "trainer_id", nullable = false)
-    String trainerId; 
+    private Trainer trainer; 
 
+    @ManyToOne
     @JoinColumn(name = "routine_id", nullable = false)
-    String routineId; 
+    private Routine routine; 
 
-    @Column(name = "name", length = 50, nullable = false)
-    String sessionName; 
+    @Column(name = "session_date", nullable = false)
+    private LocalDateTime sessionDate;
 
-    @Column(name = "note", nullable = true)
-    String notes; 
+    @Column(name = "note", length = 255)
+    private String note;
 
     @Column(name = "duration", nullable = true)
-    String duration; 
+    private Duration duration;
 
 }
