@@ -1,51 +1,45 @@
 package org.utopia.fitnessdb.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.utopia.fitnessdb.dto.SessionDto;
-import org.utopia.fitnessdb.mapper.SessionMapper;
-import org.utopia.fitnessdb.model.Session;
+import org.utopia.fitnessdb.mapper.SessionDtoMapper;
 import org.utopia.fitnessdb.service.SessionService;
-
+import jakarta.websocket.Session;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
-@RestController
-@RequestMapping("/sessions")
 @RequiredArgsConstructor
+@RestController
+@RequestMapping(
+        path = "session",
+        produces = MediaType.APPLICATION_JSON_VALUE,
+        consumes = MediaType.APPLICATION_JSON_VALUE
+)
+
 public class SessionController {
+    private final SessionDtoMapper sessionDtoMapper; 
+    private final SessionService sessionService; 
 
-    private final SessionService sessionService;
-    private final SessionMapper sessionMapper;
-
-    // Find all sessions
+    // get all session
     @GetMapping
-    public ResponseEntity<List<SessionDto>> getAllSessions() {
-        List<Session> sessions = sessionService.getAllSessions();
-        List<SessionDto> dtos = sessions.stream()
-                .map(sessionMapper::toDto)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(dtos);
+    ResponseEntity<List<SessionDto>> getAllSessions() {
+        return new ResponseEntity<>(
+            sessionDtoMapper.toDtoList(sessionService.getAllSessions()), HttpStatus.OK);
     }
 
-    // Find session by ID
-    @GetMapping("/{id}")
-    public ResponseEntity<SessionDto> getSessionById(@PathVariable Integer id) {
-        Optional<Session> sessionOpt = sessionService.getSessionById(id);
-        return sessionOpt
-                .map(session -> ResponseEntity.ok(sessionMapper.toDto(session)))
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    // get session by id
+    @GetMapping(path = "{id}")
+    ResponseEntity<SessionDto> getSessionById(@PathVariable Integer id) {
+      return new ResponseEntity<>(
+          sessionDtoMapper.toDto(sessionService.getSessionById(id)), HttpStatus.OK);
     }
-
-    // Search sessions by note
-    @GetMapping("/search")
-    public ResponseEntity<List<SessionDto>> searchSessions(@RequestParam String note) {
-        List<Session> sessions = sessionService.searchSessionsByNote(note);
-        List<SessionDto> dtos = sessions.stream()
-                .map(sessionMapper::toDto)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(dtos);
-    }
+    
 }
+
+

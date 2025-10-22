@@ -1,16 +1,20 @@
 package org.utopia.fitnessdb.dto;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.Value;
+import java.sql.Date;
+import java.sql.Time;
 
-import java.time.Instant;
-
+@Builder
 @Data
+@Value
 public class SessionDto {
-    Integer sessionId;
-    Integer clientId;
-    Integer trainerId;
-    Integer routineId;
-    Instant sessionDate;
+    Integer id;
+    Integer client;
+    Integer trainer;
+    Integer routine;
+    Date date;
     String note;
-    Instant duration;
+    Time duration;
 }
