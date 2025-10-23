@@ -1,5 +1,6 @@
 package org.utopia.fitnessdb.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.utopia.fitnessdb.model.Session;
@@ -16,7 +17,11 @@ public class SessionService {
         return sessionRepository.findAll();
     }
 
-    public Optional<Session> getSessionById(Integer id) {
-        return sessionRepository.findById(id);
+    public Session getSessionById(Integer id) throws EntityNotFoundException {
+        Optional<Session> session = sessionRepository.findById(id);
+        if (session.isEmpty()) {
+            throw new EntityNotFoundException("Session with ID " + id + " not found");
+        }
+        return session.get();
     }
 }

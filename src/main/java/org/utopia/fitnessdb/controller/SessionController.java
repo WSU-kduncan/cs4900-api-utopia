@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.utopia.fitnessdb.dto.SessionDto;
 import org.utopia.fitnessdb.mapper.SessionDtoMapper;
 import org.utopia.fitnessdb.service.SessionService;
-import jakarta.websocket.Session;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -36,10 +35,10 @@ public class SessionController {
     // get session by id
     @GetMapping(path = "{id}")
     ResponseEntity<SessionDto> getSessionById(@PathVariable Integer id) {
-      return new ResponseEntity<>(
-          sessionDtoMapper.toDto(sessionService.getSessionById(id)), HttpStatus.OK);
+        return new ResponseEntity<>(sessionDtoMapper.toDto(sessionService.getSessionById(id)), HttpStatus.OK);
     }
-    
+
+
 }
 
 
