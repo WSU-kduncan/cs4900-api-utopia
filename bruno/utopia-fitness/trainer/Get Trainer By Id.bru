@@ -1,0 +1,20 @@
+meta {
+  name: Get Trainer By Id
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{BASE_URL}}/trainer/2
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

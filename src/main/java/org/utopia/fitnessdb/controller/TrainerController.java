@@ -1,35 +1,46 @@
 package org.utopia.fitnessdb.controller;
 
-import org.utopia.fitnessdb.TrainerDTO;
-import org.utopia.fitnessdb.Trainer;
-import org.utopia.fitnessdb.TrainerService;
-import org.springframework.web.bind.annotation.*;
-
+import org.utopia.fitnessdb.dto.TrainerDto;
+import org.utopia.fitnessdb.mapper.TrainerDtoMapper;
+import org.utopia.fitnessdb.service.TrainerService;
 import java.util.List;
-import java.util.Optional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RequiredArgsConstructor
 @RestController
-@RequestMapping("/trainers")
+@RequestMapping(
+    path = "trainer",
+    produces = MediaType.APPLICATION_JSON_VALUE,
+    consumes = MediaType.APPLICATION_JSON_VALUE)
+
 public class TrainerController {
+
+    private final TrainerDtoMapper trainerMapper;
 
     private final TrainerService trainerService;
 
-    public TrainerController(TrainerService trainerService) {
-        this.trainerService = trainerService;
-    }
-
     @GetMapping
-    public List<Trainer> getAllTrainers() {
-        return trainerService.getAllTrainers();
+    ResponseEntity<List<TrainerDto>> getAllTrainers() {
+        return new ResponseEntity<>(
+            trainerMapper.toDtoList(trainerService.getAllTrainers()), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public Optional<Trainer> getTrainerById(@PathVariable Integer id) {
-        return trainerService.getTrainerById(id);
+    @GetMapping(path = "{id}")
+    ResponseEntity<TrainerDto> getTrainerById(@PathVariable Integer id) {
+        return new ResponseEntity<>(
+        trainerMapper.toDto(trainerService.getTrainerById(id)), HttpStatus.OK);
     }
 
-    @GetMapping("/search")
-    public List<Trainer> searchTrainersByName(@RequestParam String name) {
-        return trainerService.searchTrainersByName(name);
+    @GetMapping(path = "email/{email}")
+    ResponseEntity<TrainerDto> getTrainerByEmail(@PathVariable String email) {
+        return new ResponseEntity<>(
+        trainerMapper.toDto(trainerService.getTrainerByEmail(email)), HttpStatus.OK);
     }
 }

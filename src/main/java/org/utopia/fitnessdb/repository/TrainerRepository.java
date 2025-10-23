@@ -1,12 +1,14 @@
 package org.utopia.fitnessdb.repository;
 
-import org.utopia.fitnessdb.model.Trainer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.utopia.fitnessdb.model.Trainer;
 
-import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface TrainerRepository extends JpaRepository<Trainer, Integer> {
-    List<Trainer> findByNameContainingIgnoreCase(String name);
+    Optional<Trainer> findByName(String name);
+
+    Optional<Trainer> findByEmail(String email);
 }
