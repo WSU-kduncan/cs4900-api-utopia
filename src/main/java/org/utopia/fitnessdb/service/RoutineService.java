@@ -1,15 +1,14 @@
-
 package org.utopia.fitnessdb.service;
 
-import org.utopia.fitnessdb.model.Routine;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Service;
-import org.utopia.fitnessdb.repository.RoutineRepository;
-
 import jakarta.persistence.EntityNotFoundException;
+
+import org.utopia.fitnessdb.model.Routine;
+import org.springframework.stereotype.Service;
+
+import org.utopia.fitnessdb.repository.RoutineRepository;
+import lombok.RequiredArgsConstructor;
 import java.util.List;
 import java.util.Optional;
-import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service

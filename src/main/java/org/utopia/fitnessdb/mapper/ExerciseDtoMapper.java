@@ -1,17 +1,8 @@
 package org.utopia.fitnessdb.mapper;
+import jakarta.persistence.EntityNotFoundException;
+import org.mapstruct.Mapper;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.utopia.fitnessdb.controller.ExerciseController;
 import org.utopia.fitnessdb.dto.ExerciseDto;
-import org.utopia.fitnessdb.mapper.ExerciseDtoMapper;
-import org.utopia.fitnessdb.repository.ExerciseRepository;
 import org.utopia.fitnessdb.service.ExerciseService;
 import org.utopia.fitnessdb.model.Exercise;
 

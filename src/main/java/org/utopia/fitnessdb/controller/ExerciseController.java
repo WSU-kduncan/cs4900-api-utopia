@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.utopia.fitnessdb.controller.ExerciseController;
+//import org.utopia.fitnessdb.controller.ExerciseController;
 import org.utopia.fitnessdb.dto.ExerciseDto;
 import org.utopia.fitnessdb.mapper.ExerciseDtoMapper;
-import org.utopia.fitnessdb.repository.ExerciseRepository;
+//import org.utopia.fitnessdb.repository.ExerciseRepository;
 import org.utopia.fitnessdb.service.ExerciseService;
-import org.utopia.fitnessdb.model.Exercise;
+//import org.utopia.fitnessdb.model.Exercise;
 
 import java.util.List;
 
@@ -30,14 +30,14 @@ public class ExerciseController {
   private final ExerciseService exerciseService;
 
   @GetMapping
-  ResponseEntity<List<ExerciseDto>> getAllExercise() {
+  ResponseEntity<List<ExerciseDto>> getAllExercises() {
     return new ResponseEntity<>(
-        ExerciseDtoMapper.toDtoList(exerciseService.getAllExercise()), HttpStatus.OK);
+        exerciseDtoMapper.toDtoList(exerciseService.getAllExercises()), HttpStatus.OK);
   }
 
   @GetMapping(path = "{id}")
   ResponseEntity<ExerciseDto> getExerciseById(@PathVariable Integer id) {
     return new ResponseEntity<>(
-        ExerciseDtoMapper.toDto(exerciseService.getExerciseById(id)), HttpStatus.OK);
+        exerciseDtoMapper.toDto(exerciseService.getExerciseById(id)), HttpStatus.OK);
   }
 }
