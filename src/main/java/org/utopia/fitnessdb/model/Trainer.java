@@ -1,30 +1,26 @@
 package org.utopia.fitnessdb.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import jakarta.persistence.*;
+import java.util.List;
 
-@Data
 @Entity
-@Table(name = "trainer")
+@Table(name = "Trainer")
+@Getter
+@Setter
 public class Trainer {
-
     @Id
-    @Column(name = "trainer_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    @Column(name = "trainer_id", nullable = false)
+    private Integer trainerId;
 
-    @Column(name = "name", length = 50, nullable = false)
-    String name; 
+    @Column(name = "trainer_name", nullable = false, length = 50)
+    private String trainerName;
 
-    @Column(name = "email", length = 50, nullable = false)
-    String emailAddress; 
+    @Column(name = "trainer_email", nullable = false, unique = true, length = 50)
+    private String trainerEmail;
 
-    @Column(name = "password_hash", length = 255, nullable = false)
-    String passwordHash; 
-
+    @Column(name = "password_hash", nullable = false, length = 255)
+    private String passwordHash;
 }

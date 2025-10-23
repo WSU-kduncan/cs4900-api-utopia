@@ -1,33 +1,33 @@
 package org.utopia.fitnessdb.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import jakarta.persistence.*;
 
-@Data
+import java.time.Instant;
+import java.time.LocalTime;
+import java.util.List;
+
 @Entity
 @Table(name = "Exercise")
+@Getter
+@Setter
 public class Exercise {
 
     @Id
-    @Column(name = "exercise_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer exerciseId;
+    @Column(name = "exercise_id", nullable = false)
+    private Integer exerciseId;
 
-    @Column(name = "name", length = 50, nullable = false)
-    String exerciseName; 
+    @Column(name = "exercise_name", nullable = false, unique = true, length = 50)
+    private String exerciseName;
 
-    @Column(name = "note", nullable = true)
-    String notes; 
+    @Column(name = "note", columnDefinition = "TEXT")
+    private String note;
 
-    @Column(name = "duration", nullable = true)
-    String duration; 
+    @Column(name = "duration")
+    private Instant duration;
 
-    @Column(name = "reps", nullable = false)
-    String reps; 
-
+    @Column(name = "reps")
+    private Integer reps;
 }
