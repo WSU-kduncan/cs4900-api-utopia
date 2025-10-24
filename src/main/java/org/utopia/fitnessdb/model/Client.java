@@ -3,7 +3,7 @@ package org.utopia.fitnessdb.model;
 import lombok.Getter;
 import lombok.Setter;
 import jakarta.persistence.*;
-import java.util.List;
+//import java.util.List;
 
 @Entity
 @Table(name = "Client")

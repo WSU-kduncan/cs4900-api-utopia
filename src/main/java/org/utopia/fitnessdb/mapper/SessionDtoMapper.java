@@ -21,4 +21,5 @@ public interface SessionDtoMapper {
 
     // Map list of Sessions → list of SessionDto
     List<SessionDto> toDtoList(List<Session> sessions) throws EntityNotFoundException;
+
 }
