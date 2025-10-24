@@ -15,7 +15,7 @@ import java.util.List;
 public interface SessionDtoMapper {
     // Map SessionDto → Session
     Session toEntity(SessionDto dto) throws EntityNotFoundException;
-    
+
     // Map Session → SessionDto
     SessionDto toDto(Session session) throws EntityNotFoundException;
 
