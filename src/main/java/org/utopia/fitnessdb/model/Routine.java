@@ -14,8 +14,6 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-
-
 @Data
 @Entity
 @Table(name = "Routine")
@@ -34,9 +32,9 @@ public class Routine {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-        name = "Routine_Exercise",
-        joinColumns = @JoinColumn(name = "routine_id"),
-        inverseJoinColumns = @JoinColumn(name = "exercise_id")
+            name = "Routine_Exercise",
+            joinColumns = @JoinColumn(name = "routine_id"),
+            inverseJoinColumns = @JoinColumn(name = "exercise_id")
     )
     private List<Exercise> exercises;
 }

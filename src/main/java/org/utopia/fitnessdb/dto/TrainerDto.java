@@ -8,6 +8,7 @@ import lombok.Value;
 @Data
 @Value
 public class TrainerDto {
+
     Integer id;
     String name;
     String email;

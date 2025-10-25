@@ -30,5 +30,5 @@ public class Exercise {
     private Duration duration;
 
     @Column(name = "reps", nullable = true)
-    private Integer reps;    
+    private Integer reps;
 }

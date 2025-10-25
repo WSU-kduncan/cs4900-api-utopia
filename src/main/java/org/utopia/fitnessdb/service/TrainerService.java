@@ -1,19 +1,19 @@
 package org.utopia.fitnessdb.service;
 
-import jakarta.persistence.EntityNotFoundException;
-
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.utopia.fitnessdb.model.Trainer;
 import org.utopia.fitnessdb.repository.TrainerRepository;
 
-import java.util.List;
-import java.util.Optional;
+import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
 public class TrainerService {
+
     private final TrainerRepository m_repository;
 
     public List<Trainer> getAllTrainers() {

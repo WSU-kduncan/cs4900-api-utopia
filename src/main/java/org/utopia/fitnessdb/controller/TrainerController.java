@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(
-    path = "trainer",
-    produces = MediaType.APPLICATION_JSON_VALUE,
-    consumes = MediaType.APPLICATION_JSON_VALUE)
+        path = "trainer",
+        produces = MediaType.APPLICATION_JSON_VALUE,
+        consumes = MediaType.APPLICATION_JSON_VALUE)
 
 public class TrainerController {
 
@@ -29,18 +29,18 @@ public class TrainerController {
     @GetMapping
     ResponseEntity<List<TrainerDto>> getAllTrainers() {
         return new ResponseEntity<>(
-            trainerMapper.toDtoList(trainerService.getAllTrainers()), HttpStatus.OK);
+                trainerMapper.toDtoList(trainerService.getAllTrainers()), HttpStatus.OK);
     }
 
     @GetMapping(path = "{id}")
     ResponseEntity<TrainerDto> getTrainerById(@PathVariable Integer id) {
         return new ResponseEntity<>(
-        trainerMapper.toDto(trainerService.getTrainerById(id)), HttpStatus.OK);
+                trainerMapper.toDto(trainerService.getTrainerById(id)), HttpStatus.OK);
     }
 
     @GetMapping(path = "email/{email}")
     ResponseEntity<TrainerDto> getTrainerByEmail(@PathVariable String email) {
         return new ResponseEntity<>(
-        trainerMapper.toDto(trainerService.getTrainerByEmail(email)), HttpStatus.OK);
+                trainerMapper.toDto(trainerService.getTrainerByEmail(email)), HttpStatus.OK);
     }
 }
