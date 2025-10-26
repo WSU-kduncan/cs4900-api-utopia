@@ -10,8 +10,10 @@ import lombok.Value;
 @Value
 public class RoutineDto {
 
+  // reanme routineId to id 
   Integer routineId;
 
+  // rename routineName to name 
   String routineName;
 
   String description;
