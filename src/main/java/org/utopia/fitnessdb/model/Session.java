@@ -1,10 +1,20 @@
 package org.utopia.fitnessdb.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
 import lombok.Getter;
 import lombok.Setter;
-import jakarta.persistence.*;
 
-import java.time.Instant;
+import java.sql.Date;
+import java.sql.Time;
 
 @Entity
 @Table(name = "Session")
@@ -15,7 +25,7 @@ public class Session {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "session_id", nullable = false)
-    private Integer sessionId;
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id", nullable = false)
@@ -30,11 +40,11 @@ public class Session {
     private Routine routine;
 
     @Column(name = "session_date", nullable = false)
-    private Instant sessionDate;
+    private Date date;
 
     @Column(name = "note", columnDefinition = "TEXT")
     private String note;
 
     @Column(name = "duration")
-    private Instant duration;
+    private Time duration;
 }
