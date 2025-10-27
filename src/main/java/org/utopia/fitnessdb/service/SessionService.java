@@ -20,7 +20,7 @@ public class SessionService {
     public Session getSessionById(Integer id) throws EntityNotFoundException {
         Optional<Session> session = sessionRepository.findById(id); 
         if (session.isEmpty()) {
-            throw new EntityNotFoundException("Session with ID " + id + " not found");
+            throw new EntityNotFoundException("Session with ID: " + id + " not found");
         }
         return session.get(); 
     }
