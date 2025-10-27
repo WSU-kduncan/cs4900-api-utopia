@@ -12,14 +12,14 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class ClientService {
-    private final ClientRepository m_repository;
+    private final ClientRepository repository;
 
     public List<Client> getAllClients() {
-        return m_repository.findAll();
+        return repository.findAll();
     }
 
     public Client getClientById(Integer id) throws EntityNotFoundException {
-        Optional<Client> client = m_repository.findById(id);
+        Optional<Client> client = repository.findById(id);
         if (client.isEmpty()) {
             throw new EntityNotFoundException("Client with ID " + id + " not found");
         }
@@ -27,7 +27,7 @@ public class ClientService {
     }
 
     public Client getClientByEmail(String email) throws EntityNotFoundException {
-        Optional<Client> client = m_repository.findByClientEmail(email);
+        Optional<Client> client = repository.findByClientEmail(email);
         if (client.isEmpty()) {
             throw new EntityNotFoundException("Client with email " + email + " not found");
         }

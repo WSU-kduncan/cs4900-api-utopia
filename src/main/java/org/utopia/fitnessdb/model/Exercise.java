@@ -5,8 +5,6 @@ import lombok.Setter;
 import jakarta.persistence.*;
 
 import java.time.Instant;
-import java.time.LocalTime;
-import java.util.List;
 
 @Entity
 @Table(name = "Exercise")
