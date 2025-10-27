@@ -1,4 +1,3 @@
-
 package org.utopia.fitnessdb.dto;
 
 import lombok.Builder;
@@ -10,9 +9,9 @@ import lombok.Value;
 @Value
 public class RoutineDto {
 
-  Integer routineId;
+    Integer routineId;
 
-  String routineName;
+    String routineName;
 
-  String description;
+    String description;
 }

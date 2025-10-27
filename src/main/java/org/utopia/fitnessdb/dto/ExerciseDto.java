@@ -1,23 +1,23 @@
-
 package org.utopia.fitnessdb.dto;
 
-import java.time.Instant;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Value;
+
+import java.sql.Time;
 
 @Builder
 @Data
 @Value
 public class ExerciseDto {
 
-  Integer exerciseId;
+    Integer exerciseId;
 
-  String exerciseName;
+    String exerciseName;
 
-  String note;
+    String note;
 
-  Instant duration;
+    Time duration;
 
-  Integer reps;
+    Integer reps;
 }
