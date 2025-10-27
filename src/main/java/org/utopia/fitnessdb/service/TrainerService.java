@@ -48,7 +48,7 @@ public class TrainerService {
         if (trainerDto.getEmail() != null) trainer.setEmail(trainerDto.getEmail());
         if (trainer.getName() != null) trainer.setName(trainerDto.getName());
         if (trainer.getPasswordHash() != null) trainer.setPasswordHash(trainerDto.getPasswordHash());
-    
+
         return trainerRepository.saveAndFlush(trainer);
     }
 
