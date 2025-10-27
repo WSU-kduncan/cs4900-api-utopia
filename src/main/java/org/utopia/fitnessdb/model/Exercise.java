@@ -17,10 +17,10 @@ public class Exercise {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "exercise_id", nullable = false)
-    private Integer exerciseId;
+    private Integer id;
 
     @Column(name = "exercise_name", nullable = false, unique = true, length = 50)
-    private String exerciseName;
+    private String name;
 
     @Column(name = "note", columnDefinition = "TEXT")
     private String note;

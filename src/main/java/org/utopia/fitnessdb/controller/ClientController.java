@@ -25,23 +25,23 @@ import java.util.List;
 
 public class ClientController {
     
-    private final ClientDtoMapper m_mapper;
-    private final ClientService m_service;
+    private final ClientDtoMapper clientMapper;
+    private final ClientService clientService;
 
     @GetMapping
     ResponseEntity<List<ClientDto>> getAllClients() {
-        return new ResponseEntity<>(m_mapper.toDtoList(m_service.getAllClients()), HttpStatus.OK);
+        return new ResponseEntity<>(clientMapper.toDtoList(clientService.getAllClients()), HttpStatus.OK);
     }
 
     @GetMapping(path = "{id}")
     ResponseEntity<ClientDto> getClientById(@PathVariable Integer id) {
-        return new ResponseEntity<>(m_mapper.toDto(m_service.getClientById(id)), HttpStatus.OK);
+        return new ResponseEntity<>(clientMapper.toDto(clientService.getClientById(id)), HttpStatus.OK);
     }
 
     @GetMapping(path = "email/{email}")
     ResponseEntity<ClientDto> getClientByEmail(@PathVariable String email) {
         return new ResponseEntity<>(
-                m_mapper.toDto(m_service.getClientByEmail(email)), HttpStatus.OK);
+                clientMapper.toDto(clientService.getClientByEmail(email)), HttpStatus.OK);
     }
 
 }
