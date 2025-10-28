@@ -22,22 +22,22 @@ import java.util.List;
         produces = MediaType.APPLICATION_JSON_VALUE,
         consumes = MediaType.APPLICATION_JSON_VALUE)
 public class TrainerController {
-    private final TrainerDtoMapper m_mapper;
-    private final TrainerService m_service;
+    private final TrainerDtoMapper mapper;
+    private final TrainerService service;
 
     @GetMapping
     ResponseEntity<List<TrainerDto>> getAllTrainers() {
-        return new ResponseEntity<>(m_mapper.toDtoList(m_service.getAllTrainers()), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.toDtoList(service.getAllTrainers()), HttpStatus.OK);
     }
 
     @GetMapping(path = "{id}")
     ResponseEntity<TrainerDto> getTrainerById(@PathVariable Integer id) {
-        return new ResponseEntity<>(m_mapper.toDto(m_service.getTrainerById(id)), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.toDto(service.getTrainerById(id)), HttpStatus.OK);
     }
 
     @GetMapping(path = "email/{email}")
     ResponseEntity<TrainerDto> getTrainerByEmail(@PathVariable String email) {
         return new ResponseEntity<>(
-                m_mapper.toDto(m_service.getTrainerByEmail(email)), HttpStatus.OK);
+                mapper.toDto(service.getTrainerByEmail(email)), HttpStatus.OK);
     }
 }

@@ -14,14 +14,14 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class ExerciseService {
-    private final ExerciseRepository m_repository;
+    private final ExerciseRepository repository;
 
     public List<Exercise> getAllExercises() {
-        return m_repository.findAll();
+        return repository.findAll();
     }
 
     public Exercise getExerciseById(Integer id) throws EntityNotFoundException {
-        Optional<Exercise> exercise = m_repository.findById(id);
+        Optional<Exercise> exercise = repository.findById(id);
         if (exercise.isEmpty()) {
             throw new EntityNotFoundException("Exercise with ID " + id + " not found");
         }
@@ -29,7 +29,7 @@ public class ExerciseService {
     }
 
     public Exercise getExerciseByName(String name) throws EntityNotFoundException {
-        Optional<Exercise> exercise = m_repository.findByName(name);
+        Optional<Exercise> exercise = repository.findByName(name);
         if (exercise.isEmpty()) {
             throw new EntityNotFoundException("Exercise with name " + name + " not found");
         }

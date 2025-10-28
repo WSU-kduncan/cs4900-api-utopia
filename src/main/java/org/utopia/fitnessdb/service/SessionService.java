@@ -14,14 +14,14 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class SessionService {
-    private final SessionRepository m_repository;
+    private final SessionRepository repository;
 
     public List<Session> getAllSessions() {
-        return m_repository.findAll();
+        return repository.findAll();
     }
 
     public Session getSessionById(Integer id) throws EntityNotFoundException {
-        Optional<Session> session = m_repository.findById(id);
+        Optional<Session> session = repository.findById(id);
         if (session.isEmpty()) {
             throw new EntityNotFoundException("Session with ID " + id + " not found");
         }
@@ -29,7 +29,7 @@ public class SessionService {
     }
 
     public Session getSessionByTrainer(Integer trainer) throws EntityNotFoundException {
-        Optional<Session> session = m_repository.findByTrainerId(trainer);
+        Optional<Session> session = repository.findByTrainerId(trainer);
         if (session.isEmpty()) {
             throw new EntityNotFoundException("Session with trainer ID " + trainer + " not found");
         }
@@ -37,7 +37,7 @@ public class SessionService {
     }
 
     public Session getSessionByClient(Integer client) throws EntityNotFoundException {
-        Optional<Session> session = m_repository.findByClientId(client);
+        Optional<Session> session = repository.findByClientId(client);
         if (session.isEmpty()) {
             throw new EntityNotFoundException("Session with client ID " + client + " not found");
         }

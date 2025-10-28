@@ -2,7 +2,9 @@ package org.utopia.fitnessdb.mapper;
 
 import jakarta.persistence.EntityNotFoundException;
 
+import org.mapstruct.InheritConfiguration;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 import org.utopia.fitnessdb.dto.ClientDto;
 import org.utopia.fitnessdb.model.Client;
 import org.utopia.fitnessdb.service.ClientService;
@@ -18,4 +20,7 @@ public interface ClientDtoMapper {
     ClientDto toDto(Client client) throws EntityNotFoundException;
 
     List<ClientDto> toDtoList(List<Client> clients) throws EntityNotFoundException;
+
+    @InheritConfiguration
+    Client updateEntity(ClientDto clientDto, @MappingTarget Client client) throws EntityNotFoundException;
 }

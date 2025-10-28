@@ -22,22 +22,22 @@ import java.util.List;
         produces = MediaType.APPLICATION_JSON_VALUE,
         consumes = MediaType.APPLICATION_JSON_VALUE)
 public class RoutineController {
-    private final RoutineDtoMapper m_mapper;
-    private final RoutineService m_service;
+    private final RoutineDtoMapper mapper;
+    private final RoutineService service;
 
     @GetMapping
     ResponseEntity<List<RoutineDto>> getAllRoutines() {
-        return new ResponseEntity<>(m_mapper.toDtoList(m_service.getAllRoutines()), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.toDtoList(service.getAllRoutines()), HttpStatus.OK);
     }
 
     @GetMapping(path = "{id}")
     ResponseEntity<RoutineDto> getRoutineById(@PathVariable Integer id) {
-        return new ResponseEntity<>(m_mapper.toDto(m_service.getRoutineById(id)), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.toDto(service.getRoutineById(id)), HttpStatus.OK);
     }
 
     @GetMapping(path = "name/{name}")
     ResponseEntity<RoutineDto> getRoutineByName(@PathVariable String name) {
         return new ResponseEntity<>(
-                m_mapper.toDto(m_service.getRoutineByName(name)), HttpStatus.OK);
+                mapper.toDto(service.getRoutineByName(name)), HttpStatus.OK);
     }
 }

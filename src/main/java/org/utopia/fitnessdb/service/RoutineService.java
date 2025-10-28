@@ -14,14 +14,14 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class RoutineService {
-    private final RoutineRepository m_repository;
+    private final RoutineRepository repository;
 
     public List<Routine> getAllRoutines() {
-        return m_repository.findAll();
+        return repository.findAll();
     }
 
     public Routine getRoutineById(Integer id) throws EntityNotFoundException {
-        Optional<Routine> Routine = m_repository.findById(id);
+        Optional<Routine> Routine = repository.findById(id);
         if (Routine.isEmpty()) {
             throw new EntityNotFoundException("Routine with ID " + id + " not found");
         }
@@ -29,7 +29,7 @@ public class RoutineService {
     }
 
     public Routine getRoutineByName(String name) throws EntityNotFoundException {
-        Optional<Routine> Routine = m_repository.findByName(name);
+        Optional<Routine> Routine = repository.findByName(name);
         if (Routine.isEmpty()) {
             throw new EntityNotFoundException("Routine with email " + name + " not found");
         }

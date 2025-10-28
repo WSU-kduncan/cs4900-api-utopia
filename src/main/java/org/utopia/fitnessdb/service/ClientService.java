@@ -5,6 +5,8 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
+import org.utopia.fitnessdb.dto.ClientDto;
+import org.utopia.fitnessdb.mapper.ClientDtoMapper;
 import org.utopia.fitnessdb.model.Client;
 import org.utopia.fitnessdb.repository.ClientRepository;
 
@@ -14,14 +16,15 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class ClientService {
-    private final ClientRepository m_repository;
+    private final ClientRepository repository;
+    private final ClientDtoMapper mapper;
 
     public List<Client> getAllClients() {
-        return m_repository.findAll();
+        return repository.findAll();
     }
 
     public Client getClientById(Integer id) throws EntityNotFoundException {
-        Optional<Client> client = m_repository.findById(id);
+        Optional<Client> client = repository.findById(id);
         if (client.isEmpty()) {
             throw new EntityNotFoundException("Client with ID " + id + " not found");
         }
@@ -29,10 +32,20 @@ public class ClientService {
     }
 
     public Client getClientByEmail(String email) throws EntityNotFoundException {
-        Optional<Client> client = m_repository.findByEmail(email);
+        Optional<Client> client = repository.findByEmail(email);
         if (client.isEmpty()) {
             throw new EntityNotFoundException("Client with email " + email + " not found");
         }
         return client.get();
+    }
+
+    public Client createClient(ClientDto clientDto) throws EntityNotFoundException {
+        return repository.saveAndFlush(mapper.toEntity(clientDto));
+    }
+
+    public Client updateClient(Integer id, ClientDto clientDto) throws EntityNotFoundException {
+        Client client = repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Client with ID " + id + " not found"));
+        return repository.saveAndFlush(mapper.updateEntity(clientDto, client));
     }
 }

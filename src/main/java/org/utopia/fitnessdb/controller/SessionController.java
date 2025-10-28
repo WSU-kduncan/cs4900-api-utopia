@@ -22,28 +22,28 @@ import java.util.List;
         produces = MediaType.APPLICATION_JSON_VALUE,
         consumes = MediaType.APPLICATION_JSON_VALUE)
 public class SessionController {
-    private final SessionDtoMapper m_mapper;
-    private final SessionService m_service;
+    private final SessionDtoMapper mapper;
+    private final SessionService service;
 
     @GetMapping
     ResponseEntity<List<SessionDto>> getAllSessions() {
-        return new ResponseEntity<>(m_mapper.toDtoList(m_service.getAllSessions()), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.toDtoList(service.getAllSessions()), HttpStatus.OK);
     }
 
     @GetMapping(path = "{id}")
     ResponseEntity<SessionDto> getSessionById(@PathVariable Integer id) {
-        return new ResponseEntity<>(m_mapper.toDto(m_service.getSessionById(id)), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.toDto(service.getSessionById(id)), HttpStatus.OK);
     }
 
     @GetMapping(path = "trainer/{trainer}")
     ResponseEntity<SessionDto> getSessionByTrainer(@PathVariable Integer trainer) {
         return new ResponseEntity<>(
-                m_mapper.toDto(m_service.getSessionByTrainer(trainer)), HttpStatus.OK);
+                mapper.toDto(service.getSessionByTrainer(trainer)), HttpStatus.OK);
     }
 
     @GetMapping(path = "client/{client}")
     ResponseEntity<SessionDto> getSessionByClient(@PathVariable Integer client) {
         return new ResponseEntity<>(
-                m_mapper.toDto(m_service.getSessionByTrainer(client)), HttpStatus.OK);
+                mapper.toDto(service.getSessionByTrainer(client)), HttpStatus.OK);
     }
 }
