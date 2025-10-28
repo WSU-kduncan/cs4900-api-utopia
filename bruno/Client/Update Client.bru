@@ -1,0 +1,15 @@
+meta {
+  name: Update Client
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{BASE_URL}}/client/2
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}
