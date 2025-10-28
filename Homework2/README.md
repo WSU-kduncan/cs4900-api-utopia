@@ -1,3 +1,5 @@
 ### Homework 2 Error Explanation
 
-I was having issues since last week with HW2 and I did put in alot of time and also stayed after classess to get helped. One porblem gets sorted and then I'd get another one. Now the code has no error and should run fine but when I do ./gradlew bootRun it juts keeps executing for minutes on and doesn't finish executing. I though something was wrong with my code so i pulled the main branch which has been tested by the others and should work but running ./gradlew it just keeps executing as well without failing nor completing. 
+I was having issues since last week with HW2 and I did put in alot of time and also stayed after classess to get helped. One porblem gets sorted and then I'd get another one. 
+
+When I ran ./gradlew bootRun I though the last line should've had 100% but then Carson explained to me that <==========---> 80% EXECUTING [46s] means it is running. 
