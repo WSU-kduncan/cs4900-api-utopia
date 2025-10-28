@@ -68,6 +68,6 @@ public class ClientController {
                   return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<>(client, HttpStatus.OK);
+        return new ResponseEntity<>(mapper.toDto(client), HttpStatus.OK);
     }
 }

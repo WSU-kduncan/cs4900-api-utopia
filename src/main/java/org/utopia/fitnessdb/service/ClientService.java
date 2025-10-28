@@ -47,7 +47,6 @@ public class ClientService {
 
     public Client updateClient(Integer id, ClientDto clientDto) throws EntityNotFoundException {
         Client client = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Client with ID " + id + " not found"));
-//        return repository.saveAndFlush(mapper.updateEntity(clientDto, client));
 
         if (clientDto.getEmail() != null) client.setEmail(clientDto.getEmail());
         if (clientDto.getName() != null) client.setName(clientDto.getName());
