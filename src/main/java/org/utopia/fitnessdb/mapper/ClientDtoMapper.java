@@ -21,6 +21,6 @@ public interface ClientDtoMapper {
 
     List<ClientDto> toDtoList(List<Client> clients) throws EntityNotFoundException;
 
-    @InheritConfiguration
-    Client updateEntity(ClientDto clientDto, @MappingTarget Client client) throws EntityNotFoundException;
+//    @InheritConfiguration
+//    Client updateEntity(ClientDto clientDto, @MappingTarget Client client) throws EntityNotFoundException;
 }
