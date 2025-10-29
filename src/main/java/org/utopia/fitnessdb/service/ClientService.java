@@ -19,23 +19,23 @@ import javax.security.auth.login.FailedLoginException;
 @RequiredArgsConstructor
 @Service
 public class ClientService {
-    private final ClientRepository repository;
-    private final ClientDtoMapper mapper;
+    private final ClientRepository clientRepository;
+    private final ClientDtoMapper clientMapper;
     private final TrainerDtoMapper trainerMapper;
 
     public List<Client> getAllClients() {
-        return repository.findAll();
+        return clientRepository.findAll();
     }
 
     public Client getClientById(Integer id) throws EntityNotFoundException {
-        return repository
+        return clientRepository
                 .findById(id)
                 .orElseThrow(
                         () -> new EntityNotFoundException("Client with ID " + id + " not found"));
     }
 
     public Client getClientByEmail(String email) throws EntityNotFoundException {
-        return repository
+        return clientRepository
                 .findByEmail(email)
                 .orElseThrow(() ->
                         new EntityNotFoundException("Client with email " + email + " not found"));
@@ -53,11 +53,11 @@ public class ClientService {
     }
 
     public Client createClient(ClientDto clientDto) throws EntityNotFoundException {
-        return repository.saveAndFlush(mapper.toEntity(clientDto));
+        return clientRepository.saveAndFlush(clientMapper.toEntity(clientDto));
     }
 
     public Client updateClient(Integer id, ClientDto clientDto) throws EntityNotFoundException {
-        Client client = repository
+        Client client = clientRepository
                 .findById(id)
                 .orElseThrow(
                         () -> new EntityNotFoundException("Client with ID " + id + " not found"));
@@ -69,6 +69,6 @@ public class ClientService {
         if (clientDto.getPasswordHash() != null)
             client.setPasswordHash(clientDto.getPasswordHash());
 
-        return repository.saveAndFlush(client);
+        return clientRepository.saveAndFlush(client);
     }
 }

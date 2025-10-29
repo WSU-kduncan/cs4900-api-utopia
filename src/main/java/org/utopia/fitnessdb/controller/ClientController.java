@@ -37,12 +37,14 @@ public class ClientController {
 
     @GetMapping
     ResponseEntity<List<ClientDto>> getAllClients() {
-        return new ResponseEntity<>(clientMapper.toDtoList(clientService.getAllClients()), HttpStatus.OK);
+        return new ResponseEntity<>(
+                clientMapper.toDtoList(clientService.getAllClients()), HttpStatus.OK);
     }
 
     @GetMapping(path = "{id}")
     ResponseEntity<ClientDto> getClientById(@PathVariable Integer id) {
-        return new ResponseEntity<>(clientMapper.toDto(clientService.getClientById(id)), HttpStatus.OK);
+        return new ResponseEntity<>(
+                clientMapper.toDto(clientService.getClientById(id)), HttpStatus.OK);
     }
 
     @GetMapping(path = "email/{email}")

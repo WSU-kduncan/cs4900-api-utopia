@@ -3,9 +3,9 @@ package org.utopia.fitnessdb.dto;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Value;
+
 import java.sql.Date;
 import java.sql.Time;
-
 
 @Builder
 @Data
@@ -19,5 +19,3 @@ public class SessionDto {
     String note;
     Time duration;
 }
-
-

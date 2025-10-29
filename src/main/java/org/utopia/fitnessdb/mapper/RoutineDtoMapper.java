@@ -19,4 +19,3 @@ public interface RoutineDtoMapper {
 
     List<RoutineDto> toDtoList(List<Routine> Routines) throws EntityNotFoundException;
 }
-

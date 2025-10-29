@@ -1,10 +1,12 @@
 package org.utopia.fitnessdb.mapper;
 
 import jakarta.persistence.EntityNotFoundException;
+
 import org.mapstruct.Mapper;
 import org.utopia.fitnessdb.dto.ClientDto;
 import org.utopia.fitnessdb.model.Client;
 import org.utopia.fitnessdb.service.ClientService;
+
 import java.util.List;
 
 @Mapper(
