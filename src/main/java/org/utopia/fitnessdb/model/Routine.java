@@ -20,5 +20,5 @@ public class Routine {
 
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
-    
+
 }
