@@ -8,9 +8,8 @@ import lombok.Value;
 @Data
 @Value
 public class TrainerDto {
-    Integer id; 
-    String name; 
+    Integer id;
+    String name;
     String email;
-    String passwordHash; 
-
+    String passwordHash;
 }

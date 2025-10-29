@@ -2,10 +2,11 @@ package org.utopia.fitnessdb.service;
 
 import jakarta.persistence.EntityNotFoundException;
 
-import org.utopia.fitnessdb.repository.ClientRepository;
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 import org.utopia.fitnessdb.model.Client;
-import lombok.RequiredArgsConstructor;
+import org.utopia.fitnessdb.repository.ClientRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,9 +16,8 @@ import java.util.Optional;
 public class ClientService {
     private final ClientRepository clientRepository;
 
-
     public List<Client> getAllClients() {
-        return clientRepository.findAll(); 
+        return clientRepository.findAll();
     }
 
     public Client getClientById(Integer id) throws EntityNotFoundException {
@@ -35,5 +35,4 @@ public class ClientService {
         }
         return client.get();
     }
-    
 }

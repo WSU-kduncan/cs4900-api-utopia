@@ -1,7 +1,9 @@
 package org.utopia.fitnessdb.service;
 
 import jakarta.persistence.EntityNotFoundException;
+
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 import org.utopia.fitnessdb.model.Routine;
 import org.utopia.fitnessdb.repository.RoutineRepository;
@@ -12,7 +14,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class RoutineService {
-    private final RoutineRepository routineRepository; 
+    private final RoutineRepository routineRepository;
 
     public List<Routine> getAllRoutines() {
         return routineRepository.findAll();
@@ -33,5 +35,4 @@ public class RoutineService {
         }
         return Routine.get();
     }
-    
 }

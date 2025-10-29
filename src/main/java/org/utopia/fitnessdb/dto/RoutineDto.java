@@ -8,8 +8,7 @@ import lombok.Value;
 @Data
 @Value
 public class RoutineDto {
-    Integer id; 
-    String name; 
-    String description; 
-
+    Integer id;
+    String name;
+    String description;
 }

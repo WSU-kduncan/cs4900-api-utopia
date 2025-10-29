@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.utopia.fitnessdb.dto.TrainerDto;
 import org.utopia.fitnessdb.mapper.TrainerDtoMapper;
 import org.utopia.fitnessdb.service.TrainerService;
+
 import java.util.List;
 
 @RestController
@@ -19,11 +20,9 @@ import java.util.List;
 @RequestMapping(
         path = "trainer",
         produces = MediaType.APPLICATION_JSON_VALUE,
-        consumes = MediaType.APPLICATION_JSON_VALUE
-)
-
+        consumes = MediaType.APPLICATION_JSON_VALUE)
 public class TrainerController {
-    
+
     private final TrainerDtoMapper m_mapper;
     private final TrainerService m_service;
 
@@ -42,5 +41,4 @@ public class TrainerController {
         return new ResponseEntity<>(
                 m_mapper.toDto(m_service.getTrainerByEmail(email)), HttpStatus.OK);
     }
-
 }

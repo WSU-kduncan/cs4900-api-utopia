@@ -1,6 +1,7 @@
 package org.utopia.fitnessdb.mapper;
 
 import jakarta.persistence.EntityNotFoundException;
+
 import org.mapstruct.Mapper;
 import org.utopia.fitnessdb.dto.RoutineDto;
 import org.utopia.fitnessdb.model.Routine;
@@ -10,9 +11,7 @@ import java.util.List;
 
 @Mapper(
         componentModel = "spring",
-        uses = {RoutineService.class}
-)
-
+        uses = {RoutineService.class})
 public interface RoutineDtoMapper {
     Routine toEntity(RoutineDto dto) throws EntityNotFoundException;
 
@@ -20,4 +19,3 @@ public interface RoutineDtoMapper {
 
     List<RoutineDto> toDtoList(List<Routine> Routines) throws EntityNotFoundException;
 }
-
