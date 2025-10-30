@@ -44,6 +44,6 @@ public class SessionController {
     @GetMapping(path = "client/{client}")
     ResponseEntity<SessionDto> getSessionByClient(@PathVariable Integer client) {
         return new ResponseEntity<>(
-                mapper.toDto(service.getSessionByTrainer(client)), HttpStatus.OK);
+                mapper.toDto(service.getSessionByClient(client)), HttpStatus.OK);
     }
 }

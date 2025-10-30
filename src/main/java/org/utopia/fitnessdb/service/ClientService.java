@@ -12,7 +12,8 @@ import org.utopia.fitnessdb.model.Client;
 import org.utopia.fitnessdb.repository.ClientRepository;
 
 import java.util.List;
-import java.util.Optional;
+
+import javax.security.auth.login.FailedLoginException;
 
 @RequiredArgsConstructor
 @Service
@@ -26,19 +27,28 @@ public class ClientService {
     }
 
     public Client getClientById(Integer id) throws EntityNotFoundException {
-        Optional<Client> client = repository.findById(id);
-        if (client.isEmpty()) {
-            throw new EntityNotFoundException("Client with ID " + id + " not found");
-        }
-        return client.get();
+        return repository
+                .findById(id)
+                .orElseThrow(
+                        () -> new EntityNotFoundException("Client with ID " + id + " not found"));
     }
 
     public Client getClientByEmail(String email) throws EntityNotFoundException {
-        Optional<Client> client = repository.findByEmail(email);
-        if (client.isEmpty()) {
-            throw new EntityNotFoundException("Client with email " + email + " not found");
+        return repository
+                .findByEmail(email)
+                .orElseThrow(() ->
+                        new EntityNotFoundException("Client with email " + email + " not found"));
+    }
+
+    public Client login(String email, String passwordHash)
+            throws EntityNotFoundException, FailedLoginException {
+        Client client = getClientByEmail(email);
+
+        if (client.getPasswordHash() != passwordHash) {
+            throw new FailedLoginException("Incorrect password.");
         }
-        return client.get();
+
+        return client;
     }
 
     public Client createClient(ClientDto clientDto) throws EntityNotFoundException {
