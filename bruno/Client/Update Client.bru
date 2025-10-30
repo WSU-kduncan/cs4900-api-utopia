@@ -6,10 +6,18 @@ meta {
 
 put {
   url: {{BASE_URL}}/client/2
-  body: none
+  body: json
   auth: inherit
+}
+
+body:json {
+  {
+    "passwordHash": "9287432847329489327492839u9fdsushdif32332",
+    "email": "piana_new@gmail.com"
+  }
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }
