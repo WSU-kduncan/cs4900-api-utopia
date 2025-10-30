@@ -37,7 +37,6 @@ public class ExerciseController {
 
     @GetMapping(path = "name/{name}")
     ResponseEntity<ExerciseDto> getExerciseByName(@PathVariable String name) {
-        return new ResponseEntity<>(
-                mapper.toDto(service.getExerciseByName(name)), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.toDto(service.getExerciseByName(name)), HttpStatus.OK);
     }
 }

@@ -37,7 +37,6 @@ public class TrainerController {
 
     @GetMapping(path = "email/{email}")
     ResponseEntity<TrainerDto> getTrainerByEmail(@PathVariable String email) {
-        return new ResponseEntity<>(
-                mapper.toDto(service.getTrainerByEmail(email)), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.toDto(service.getTrainerByEmail(email)), HttpStatus.OK);
     }
 }

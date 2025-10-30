@@ -37,7 +37,6 @@ public class RoutineController {
 
     @GetMapping(path = "name/{name}")
     ResponseEntity<RoutineDto> getRoutineByName(@PathVariable String name) {
-        return new ResponseEntity<>(
-                mapper.toDto(service.getRoutineByName(name)), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.toDto(service.getRoutineByName(name)), HttpStatus.OK);
     }
 }

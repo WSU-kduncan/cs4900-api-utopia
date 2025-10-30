@@ -46,12 +46,17 @@ public class ClientService {
     }
 
     public Client updateClient(Integer id, ClientDto clientDto) throws EntityNotFoundException {
-        Client client = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Client with ID " + id + " not found"));
+        Client client = repository
+                .findById(id)
+                .orElseThrow(
+                        () -> new EntityNotFoundException("Client with ID " + id + " not found"));
 
         if (clientDto.getEmail() != null) client.setEmail(clientDto.getEmail());
         if (clientDto.getName() != null) client.setName(clientDto.getName());
-        if (clientDto.getTrainer() != null) client.setTrainer(trainerMapper.toEntity(clientDto.getTrainer()));
-        if (clientDto.getPasswordHash() != null) client.setPasswordHash(clientDto.getPasswordHash());
+        if (clientDto.getTrainer() != null)
+            client.setTrainer(trainerMapper.toEntity(clientDto.getTrainer()));
+        if (clientDto.getPasswordHash() != null)
+            client.setPasswordHash(clientDto.getPasswordHash());
 
         return repository.saveAndFlush(client);
     }

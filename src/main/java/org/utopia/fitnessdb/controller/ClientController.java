@@ -1,5 +1,7 @@
 package org.utopia.fitnessdb.controller;
 
+import jakarta.persistence.EntityNotFoundException;
+
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
@@ -16,8 +18,6 @@ import org.utopia.fitnessdb.dto.ClientDto;
 import org.utopia.fitnessdb.mapper.ClientDtoMapper;
 import org.utopia.fitnessdb.model.Client;
 import org.utopia.fitnessdb.service.ClientService;
-
-import jakarta.persistence.EntityNotFoundException;
 
 import java.util.List;
 
@@ -43,8 +43,7 @@ public class ClientController {
 
     @GetMapping(path = "email/{email}")
     ResponseEntity<ClientDto> getClientByEmail(@PathVariable String email) {
-        return new ResponseEntity<>(
-                mapper.toDto(service.getClientByEmail(email)), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.toDto(service.getClientByEmail(email)), HttpStatus.OK);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -60,12 +59,13 @@ public class ClientController {
     }
 
     @PutMapping(path = "{id}")
-    ResponseEntity<Object> updateClient(@PathVariable("id") Integer id, @RequestBody ClientDto clientDto) {
+    ResponseEntity<Object> updateClient(
+            @PathVariable("id") Integer id, @RequestBody ClientDto clientDto) {
         Client client;
         try {
             client = service.updateClient(id, clientDto);
         } catch (EntityNotFoundException e) {
-                  return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
         }
 
         return new ResponseEntity<>(mapper.toDto(client), HttpStatus.OK);
