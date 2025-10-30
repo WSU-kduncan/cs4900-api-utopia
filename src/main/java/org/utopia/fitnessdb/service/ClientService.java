@@ -12,6 +12,7 @@ import org.utopia.fitnessdb.model.Client;
 import org.utopia.fitnessdb.repository.ClientRepository;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.security.auth.login.FailedLoginException;
 
@@ -44,7 +45,7 @@ public class ClientService {
             throws EntityNotFoundException, FailedLoginException {
         Client client = getClientByEmail(email);
 
-        if (client.getPasswordHash() != passwordHash) {
+        if (!Objects.equals(client.getPasswordHash(), passwordHash)) {
             throw new FailedLoginException("Incorrect password.");
         }
 

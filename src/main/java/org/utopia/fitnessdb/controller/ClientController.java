@@ -60,7 +60,7 @@ public class ClientController {
             return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.UNAUTHORIZED);
         }
 
-        return new ResponseEntity<>(client, HttpStatus.OK);
+        return new ResponseEntity<>(mapper.toDto(client), HttpStatus.OK);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
