@@ -6,10 +6,25 @@ meta {
 
 post {
   url: {{BASE_URL}}/client
-  body: none
+  body: json
   auth: inherit
+}
+
+body:json {
+  {
+    "name": "Rich Piana",
+    "email": "olympia_piana@gmail.com",
+    "passwordHash": "jsibdjsbihfbfnmjoj874324798sduf9u92843798uus98fu398u4",
+    "trainer": {
+      "id": 2,
+      "name": "Charles Odderson",
+      "email": "codderson@awesome.com",
+      "passwordHash": "123456"
+    }
+  }
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }
