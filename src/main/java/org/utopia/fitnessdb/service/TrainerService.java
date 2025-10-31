@@ -1,7 +1,10 @@
 package org.utopia.fitnessdb.service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
+import javax.security.auth.login.FailedLoginException;
 
 import org.springframework.stereotype.Service;
 import org.utopia.fitnessdb.dto.TrainerDto;
@@ -36,6 +39,16 @@ public class TrainerService {
             throw new EntityNotFoundException("Trainer with email " + email + " not found");
         }
         return trainer.get();
+    }
+
+    public Trainer trainerLogin(String email, String passwordHash) throws EntityNotFoundException, FailedLoginException {
+        Trainer trainer = getTrainerByEmail(email);
+
+        if (!Objects.equals(trainer.getPasswordHash(), passwordHash)) {
+            throw new FailedLoginException("Incorrect password.");
+        }
+
+        return trainer;
     }
 
     public Trainer createTrainer(TrainerDto trainerDto) throws EntityNotFoundException {
