@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.utopia.fitnessdb.model.Session;
 import org.utopia.fitnessdb.repository.SessionRepository;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,6 +45,10 @@ public class SessionService {
         return session.get();
     }
 
+    public List<Session> getSessionByDate(Date date) {
+        return sessionRepository.findByDate(date);
+    }
+
     public Session createSession(Session entity) {
         return sessionRepository.save(entity);
 
@@ -64,14 +68,6 @@ public class SessionService {
     
         return sessionRepository.save(existingSession);
     }
-    
-
-
-
-    //public Session getSessionByDate(Session date) {
-      //  return date; 
-    //}
-
     
 
 }
