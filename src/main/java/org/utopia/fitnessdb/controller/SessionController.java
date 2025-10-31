@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.utopia.fitnessdb.dto.SessionDto;
 import org.utopia.fitnessdb.mapper.SessionDtoMapper;
@@ -41,13 +42,14 @@ public class SessionController {
         return new ResponseEntity<>(
                 sessionDtoMapper.toDto(sessionService.getSessionById(id)), HttpStatus.OK);
     }
-/* 
+ 
     // get session by date
-    @GetMapping(path = "{date}")
-    ResponseEntity<SessionDto> getSessionByDate(@PathVariable Date date) {
-        return new ResponseEntity<>(
-            SessionDtoMapper.toDto(sessionService.getSessionByDate(date)), HttpStatus.OK);
-    } */
+    @GetMapping(path = "date")
+    ResponseEntity<List<SessionDto>> getSessionByDate(@RequestParam String date) {
+        java.sql.Date parsedDate = java.sql.Date.valueOf(date); 
+        List<SessionDto> sessions = sessionDtoMapper.toDtoList(sessionService.getSessionByDate(parsedDate));
+        return new ResponseEntity<>(sessions, HttpStatus.OK);
+    }
 
     // get session by trainer
     @GetMapping(path = "trainer/{trainer}")
@@ -62,7 +64,6 @@ public class SessionController {
         return new ResponseEntity<>(
             sessionDtoMapper.toDto(sessionService.getSessionByClient(client)), HttpStatus.OK);
     }
-
  
     // POST
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -78,4 +79,5 @@ public class SessionController {
         return new ResponseEntity<>(updated, HttpStatus.OK);
     }
 
+    
 }
