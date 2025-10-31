@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.security.auth.login.FailedLoginException;
 
+import javax.security.auth.login.FailedLoginException;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +47,12 @@ public class TrainerController {
 
     @GetMapping(path = "email/{email}")
     ResponseEntity<TrainerDto> getTrainerByEmail(@PathVariable String email) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        return new ResponseEntity<>(mapper.toDto(service.getTrainerByEmail(email)), HttpStatus.OK);
+=======
+>>>>>>> 6c7b90e (Fixing file conflicts)
         return new ResponseEntity<>(
                 trainerDtoMapper.toDto(trainerService.getTrainerByEmail(email)), HttpStatus.OK);
     }
@@ -82,5 +90,9 @@ public class TrainerController {
             return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(trainerDtoMapper.toDto(trainer), HttpStatus.OK);
+<<<<<<< HEAD
+=======
+>>>>>>> 5746af9 (Added login methods for Trainer)
+>>>>>>> 6c7b90e (Fixing file conflicts)
     }
 }
