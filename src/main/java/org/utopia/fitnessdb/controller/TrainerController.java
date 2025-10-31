@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.utopia.fitnessdb.dto.TrainerDto;
 import org.utopia.fitnessdb.mapper.TrainerDtoMapper;
 import org.utopia.fitnessdb.model.Trainer;
+import org.utopia.fitnessdb.object.LoginForm;
 import org.utopia.fitnessdb.service.TrainerService;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -47,26 +48,20 @@ public class TrainerController {
 
     @GetMapping(path = "email/{email}")
     ResponseEntity<TrainerDto> getTrainerByEmail(@PathVariable String email) {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-        return new ResponseEntity<>(mapper.toDto(service.getTrainerByEmail(email)), HttpStatus.OK);
-=======
->>>>>>> 6c7b90e (Fixing file conflicts)
-        return new ResponseEntity<>(
-                trainerDtoMapper.toDto(trainerService.getTrainerByEmail(email)), HttpStatus.OK);
+        return new ResponseEntity<>(trainerDtoMapper.toDto(trainerService.getTrainerByEmail(email)), HttpStatus.OK);
     }
 
     @PostMapping(path = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Object> trainerLogin(@ResponseBody LoginForm form) {
         Trainer trainer;
-        try {
-            trainer = trainerService.login(form.getEmail(), form.getPasswordHash());
+       try {
+            trainer = trainerService.trainerLogin(form.getEmail(), form.getPasswordHash());
         } catch (EntityNotFoundException e) {
             return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
         } catch (FailedLoginException e) {
             return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.UNAUTHORIZED);
         }
+
         return new ResponseEntity<>(trainerDtoMapper.toDto(trainer), HttpStatus.OK);
     }
 
@@ -90,9 +85,6 @@ public class TrainerController {
             return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(trainerDtoMapper.toDto(trainer), HttpStatus.OK);
-<<<<<<< HEAD
-=======
->>>>>>> 5746af9 (Added login methods for Trainer)
->>>>>>> 6c7b90e (Fixing file conflicts)
+
     }
 }
