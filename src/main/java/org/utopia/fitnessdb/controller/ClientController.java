@@ -17,9 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.utopia.fitnessdb.dto.ClientDto;
 import org.utopia.fitnessdb.mapper.ClientDtoMapper;
 import org.utopia.fitnessdb.model.Client;
+import org.utopia.fitnessdb.object.LoginForm;
 import org.utopia.fitnessdb.service.ClientService;
 
 import java.util.List;
+
+import javax.security.auth.login.FailedLoginException;
 
 @RequiredArgsConstructor
 @RestController
@@ -44,6 +47,20 @@ public class ClientController {
     @GetMapping(path = "email/{email}")
     ResponseEntity<ClientDto> getClientByEmail(@PathVariable String email) {
         return new ResponseEntity<>(mapper.toDto(service.getClientByEmail(email)), HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<Object> login(@RequestBody LoginForm form) {
+        Client client;
+        try {
+            client = service.login(form.getEmail(), form.getPasswordHash());
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
+        } catch (FailedLoginException e) {
+            return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.UNAUTHORIZED);
+        }
+
+        return new ResponseEntity<>(mapper.toDto(client), HttpStatus.OK);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
