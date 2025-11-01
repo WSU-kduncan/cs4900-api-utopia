@@ -1,13 +1,15 @@
 package org.utopia.fitnessdb.mapper;
 
-import jakarta.persistence.EntityNotFoundException;
+import java.util.List;
 
+import org.mapstruct.InheritConfiguration;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 import org.utopia.fitnessdb.dto.TrainerDto;
 import org.utopia.fitnessdb.model.Trainer;
 import org.utopia.fitnessdb.service.TrainerService;
 
-import java.util.List;
+import jakarta.persistence.EntityNotFoundException;
 
 @Mapper(
         componentModel = "spring",
@@ -18,4 +20,7 @@ public interface TrainerDtoMapper {
     TrainerDto toDto(Trainer trainer) throws EntityNotFoundException;
 
     List<TrainerDto> toDtoList(List<Trainer> trainers) throws EntityNotFoundException;
+
+    @InheritConfiguration
+    Trainer updateEntity(TrainerDto trainerDto, @MappingTarget Trainer trainer) throws EntityNotFoundException;
 }
