@@ -13,9 +13,12 @@ import java.util.List;
         componentModel = "spring",
         uses = {SessionService.class})
 public interface SessionDtoMapper {
+    // Map SessionDto → Session
     Session toEntity(SessionDto dto) throws EntityNotFoundException;
 
+    // Map Session → SessionDto
     SessionDto toDto(Session session) throws EntityNotFoundException;
 
+    // Map list of Sessions → list of SessionDto
     List<SessionDto> toDtoList(List<Session> sessions) throws EntityNotFoundException;
 }

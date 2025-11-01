@@ -5,13 +5,14 @@ import org.springframework.stereotype.Repository;
 import org.utopia.fitnessdb.model.Session;
 
 import java.sql.Date;
+import java.util.List; 
 import java.util.Optional;
 
 @Repository
 public interface SessionRepository extends JpaRepository<Session, Integer> {
-    Optional<Session> findByDate(Date date);
-
+    List<Session> findByDate(Date date);
+    
     Optional<Session> findByTrainerId(Integer trainer);
-
+    
     Optional<Session> findByClientId(Integer client);
 }
