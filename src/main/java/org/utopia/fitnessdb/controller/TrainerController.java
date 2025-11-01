@@ -2,6 +2,8 @@ package org.utopia.fitnessdb.controller;
 
 import java.util.List;
 
+import javax.security.auth.login.FailedLoginException;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.utopia.fitnessdb.dto.TrainerDto;
 import org.utopia.fitnessdb.mapper.TrainerDtoMapper;
 import org.utopia.fitnessdb.model.Trainer;
+import org.utopia.fitnessdb.object.LoginForm;
 import org.utopia.fitnessdb.service.TrainerService;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -44,6 +47,20 @@ public class TrainerController {
     ResponseEntity<TrainerDto> getTrainerByEmail(@PathVariable String email) {
         return new ResponseEntity<>(
                 trainerDtoMapper.toDto(trainerService.getTrainerByEmail(email)), HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<Object> trainerLogin(@RequestBody LoginForm form) {
+        Trainer trainer;
+       try {
+            trainer = trainerService.trainerLogin(form.getEmail(), form.getPasswordHash());
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
+        } catch (FailedLoginException e) {
+            return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.UNAUTHORIZED);
+        }
+
+        return new ResponseEntity<>(trainerDtoMapper.toDto(trainer), HttpStatus.OK);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

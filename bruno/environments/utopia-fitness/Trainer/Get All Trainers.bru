@@ -1,15 +1,16 @@
 meta {
-  name: Get Trainer
+  name: Get All Trainers
   type: http
   seq: 1
 }
 
 get {
-  url: {{BASE_URL}}/Trainer
-  body: none
+  url: {{BASE_URL}}/trainer
+  body: json
   auth: inherit
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }
