@@ -1,0 +1,23 @@
+meta {
+  name: Login
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{BASE_URL}}/trainer/login
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "arnold@awesome.com",
+    "passwordHash": "abcdefg"  
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
