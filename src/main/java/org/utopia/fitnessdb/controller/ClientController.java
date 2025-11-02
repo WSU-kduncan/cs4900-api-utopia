@@ -31,43 +31,47 @@ import javax.security.auth.login.FailedLoginException;
         produces = MediaType.APPLICATION_JSON_VALUE,
         consumes = MediaType.APPLICATION_JSON_VALUE)
 public class ClientController {
-    private final ClientDtoMapper mapper;
-    private final ClientService service;
+
+    private final ClientDtoMapper clientMapper;
+    private final ClientService clientService;
 
     @GetMapping
     ResponseEntity<List<ClientDto>> getAllClients() {
-        return new ResponseEntity<>(mapper.toDtoList(service.getAllClients()), HttpStatus.OK);
+        return new ResponseEntity<>(
+                clientMapper.toDtoList(clientService.getAllClients()), HttpStatus.OK);
     }
 
     @GetMapping(path = "{id}")
     ResponseEntity<ClientDto> getClientById(@PathVariable Integer id) {
-        return new ResponseEntity<>(mapper.toDto(service.getClientById(id)), HttpStatus.OK);
+        return new ResponseEntity<>(
+                clientMapper.toDto(clientService.getClientById(id)), HttpStatus.OK);
     }
 
     @GetMapping(path = "email/{email}")
     ResponseEntity<ClientDto> getClientByEmail(@PathVariable String email) {
-        return new ResponseEntity<>(mapper.toDto(service.getClientByEmail(email)), HttpStatus.OK);
+        return new ResponseEntity<>(
+                clientMapper.toDto(clientService.getClientByEmail(email)), HttpStatus.OK);
     }
 
     @PostMapping(path = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Object> login(@RequestBody LoginForm form) {
         Client client;
         try {
-            client = service.login(form.getEmail(), form.getPasswordHash());
+            client = clientService.login(form.getEmail(), form.getPasswordHash());
         } catch (EntityNotFoundException e) {
             return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
         } catch (FailedLoginException e) {
             return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.UNAUTHORIZED);
         }
 
-        return new ResponseEntity<>(mapper.toDto(client), HttpStatus.OK);
+        return new ResponseEntity<>(clientMapper.toDto(client), HttpStatus.OK);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Object> createClient(@RequestBody ClientDto clientDto) {
         Client client;
         try {
-            client = service.createClient(clientDto);
+            client = clientService.createClient(clientDto);
         } catch (EntityNotFoundException e) {
             return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
         }
@@ -80,11 +84,11 @@ public class ClientController {
             @PathVariable("id") Integer id, @RequestBody ClientDto clientDto) {
         Client client;
         try {
-            client = service.updateClient(id, clientDto);
+            client = clientService.updateClient(id, clientDto);
         } catch (EntityNotFoundException e) {
             return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<>(mapper.toDto(client), HttpStatus.OK);
+        return new ResponseEntity<>(clientMapper.toDto(client), HttpStatus.OK);
     }
 }

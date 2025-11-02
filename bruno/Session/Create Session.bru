@@ -1,0 +1,27 @@
+meta {
+  name: Create Session
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{BASE_URL}}/session
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "client": { "id": 1 },
+    "trainer": { "id": 2 },
+    "routine": { "id": 3 },
+    "date": "2025-10-30",
+    "note": "Chest workout session",
+    "duration": "01:00:00"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
