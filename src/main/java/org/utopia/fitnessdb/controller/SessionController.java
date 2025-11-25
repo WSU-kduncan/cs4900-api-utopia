@@ -24,7 +24,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(path = "session", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "session")
 public class SessionController {
     private final SessionDtoMapper sessionDtoMapper;
     private final SessionService sessionService;
