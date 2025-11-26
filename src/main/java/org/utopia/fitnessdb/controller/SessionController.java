@@ -55,16 +55,16 @@ public class SessionController {
 
     // get session by trainer
     @GetMapping(path = "trainer/{trainer}")
-    ResponseEntity<SessionDto> getSessionByTrainer(@PathVariable Integer trainer) {
+    ResponseEntity<List<SessionDto>> getSessionByTrainer(@PathVariable Integer trainer) {
         return new ResponseEntity<>(
-            sessionDtoMapper.toDto(sessionService.getSessionByTrainer(trainer)), HttpStatus.OK);
+            sessionDtoMapper.toDtoList(sessionService.getSessionByTrainer(trainer)), HttpStatus.OK);
     }
 
     // get session by client
     @GetMapping(path = "client/{client}")
-    ResponseEntity<SessionDto> getSessionByClient(@PathVariable Integer client) {
+    ResponseEntity<List<SessionDto>> getSessionByClient(@PathVariable Integer client) {
         return new ResponseEntity<>(
-            sessionDtoMapper.toDto(sessionService.getSessionByClient(client)), HttpStatus.OK);
+            sessionDtoMapper.toDtoList(sessionService.getSessionByClient(client)), HttpStatus.OK);
     }
  
     // POST

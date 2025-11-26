@@ -29,20 +29,20 @@ public class SessionService {
         return session.get();
     }
 
-    public Session getSessionByTrainer(Integer trainer) throws EntityNotFoundException {
-        Optional<Session> session = sessionRepository.findByTrainerId(trainer);
-        if (session.isEmpty()) {
-            throw new EntityNotFoundException("Session with trainer ID " + trainer + " not found");
+    public List<Session> getSessionByTrainer(Integer trainer) throws EntityNotFoundException {
+        List<Session> sessions = sessionRepository.findByTrainerId(trainer);
+        if (sessions.isEmpty()) {
+            throw new EntityNotFoundException("No sessions found for trainer ID " + trainer);
         }
-        return session.get();
+        return sessions;
     }
 
-    public Session getSessionByClient(Integer client) throws EntityNotFoundException {
-        Optional<Session> session = sessionRepository.findByClientId(client);
-        if (session.isEmpty()) {
+    public List<Session> getSessionByClient(Integer client) throws EntityNotFoundException {
+        List<Session> sessions = sessionRepository.findByClientId(client);
+        if (sessions.isEmpty()) {
             throw new EntityNotFoundException("Session with client ID " + client + " not found");
         }
-        return session.get();
+        return sessions;
     }
 
     public List<Session> getSessionByDate(Date date) {

@@ -32,7 +32,7 @@ public class Session {
     private Client client;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "trainer_id", nullable = false)
+    @JoinColumn(name = "trainer_id")
     private Trainer trainer;
 
     @ManyToOne(fetch = FetchType.LAZY)

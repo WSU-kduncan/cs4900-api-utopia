@@ -9,7 +9,11 @@ import javax.security.auth.login.FailedLoginException;
 import org.springframework.stereotype.Service;
 import org.utopia.fitnessdb.dto.TrainerDto;
 import org.utopia.fitnessdb.mapper.TrainerDtoMapper;
+import org.utopia.fitnessdb.model.Client;
 import org.utopia.fitnessdb.model.Trainer;
+import org.utopia.fitnessdb.model.Session;
+import org.utopia.fitnessdb.repository.ClientRepository;
+import org.utopia.fitnessdb.repository.SessionRepository;
 import org.utopia.fitnessdb.repository.TrainerRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -20,6 +24,8 @@ import lombok.RequiredArgsConstructor;
 public class TrainerService {
     private final TrainerRepository trainerRepository;
     private final TrainerDtoMapper trainerDtoMapper;
+    private final ClientRepository clientRepository;
+    private final SessionRepository sessionRepository;
 
     public List<Trainer> getAllTrainers() {
         return trainerRepository.findAll();
@@ -63,6 +69,26 @@ public class TrainerService {
         if (trainer.getPasswordHash() != null) trainer.setPasswordHash(trainerDto.getPasswordHash());
 
         return trainerRepository.saveAndFlush(trainer);
+    }
+
+    public void deleteTrainer(Integer id) {
+        if (!trainerRepository.existsById(id)) {
+            throw new EntityNotFoundException("Trainer not found with id " + id);
+        }
+
+        List<Client> clients = clientRepository.findByTrainerId(id);
+        for (Client c : clients) {
+            c.setTrainer(null);
+            clientRepository.save(c);
+        }
+
+        List<Session> sessions = sessionRepository.findByTrainerId(id);
+        for (Session s : sessions) {
+            s.setTrainer(null);
+            sessionRepository.save(s);
+        }
+
+        trainerRepository.deleteById(id);
     }
 
 }
