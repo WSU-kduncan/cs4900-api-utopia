@@ -43,3 +43,10 @@
   - Update routine
   - Update exercise
   - Update session
+
+## DELETE Methods
+  - Delete trainer
+  - Delete client
+  - Delete routine
+  - Delete exercise
+  - Delete session
