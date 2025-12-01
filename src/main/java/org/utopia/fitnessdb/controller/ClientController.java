@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -26,10 +27,8 @@ import javax.security.auth.login.FailedLoginException;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(
-        path = "client",
-        produces = MediaType.APPLICATION_JSON_VALUE,
-        consumes = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "client")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ClientController {
 
     private final ClientDtoMapper clientMapper;
