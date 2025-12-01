@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.utopia.fitnessdb.dto.SessionDto;
 import org.utopia.fitnessdb.mapper.SessionDtoMapper;
 import org.utopia.fitnessdb.service.SessionService;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 import jakarta.persistence.criteria.Path;
 
@@ -79,6 +80,13 @@ public class SessionController {
     ResponseEntity<SessionDto> updateSession(@PathVariable Integer id, @RequestBody SessionDto sessionDto) {
         SessionDto updated = sessionDtoMapper.toDto(sessionService.updateSession(id, sessionDtoMapper.toEntity(sessionDto)));
         return new ResponseEntity<>(updated, HttpStatus.OK);
+    }
+
+    // DELETE
+    @DeleteMapping(path = "{id}")
+    ResponseEntity<Void> deleteSession(@PathVariable Integer id) {
+        sessionService.deleteSession(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     

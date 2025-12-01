@@ -54,6 +54,10 @@ public class SessionService {
 
     }
 
+    public void deleteSession(Integer id) {
+        sessionRepository.deleteById(id);
+    }
+
     public Session updateSession(Integer id, Session update) throws EntityNotFoundException {
         Session existingSession = sessionRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Session with ID: " + id + " not found"));
