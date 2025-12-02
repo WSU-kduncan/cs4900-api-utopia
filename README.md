@@ -1,6 +1,7 @@
-# OpenTrainer
-
-The API repository for OpenTrainer.
+# Utopia Fitness Tracker
+## CS4900: Application of the Software Development Lifecycle
+## Information:
+This is the API repository for the Fitness Tracker.
 
 ## Setup
 
