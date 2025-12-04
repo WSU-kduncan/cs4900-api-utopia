@@ -71,4 +71,13 @@ public class ClientService {
 
         return clientRepository.saveAndFlush(client);
     }
+
+    public void deleteClient(Integer id) throws EntityNotFoundException {
+        Client client = clientRepository
+                .findById(id)
+                .orElseThrow(
+                        () -> new EntityNotFoundException("Client with ID " + id + " not found"));
+
+        clientRepository.delete(client);
+    }
 }
