@@ -2,7 +2,9 @@
 ## CS4900: Application of the Software Development Lifecycle
 
 ## Information:
-This is the backend API for the Fitness Tracker. It handles the main features like exercise, routines, and sesions. It contains all the necessary features such as add, remove, update, GET, and POST. 
+This is the backend API for the Fitness Tracker. It handles the main features like exercise, routines, and sesions. It contains all the necessary features such as add, remove, update, GET, and POST.  
+
+Find some info about [API routes](./utopia-api-routes.md)
 
 ---
 ## Tools Needed
@@ -48,4 +50,6 @@ This is the backend API for the Fitness Tracker. It handles the main features li
       "duration": "01:00:00"
     }
     ```
-- Send Request
+- Send Request  
+
+
